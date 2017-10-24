@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <WeexSDK/WeexSDK.h>
 #import "WXApi.h"
+CG_EXTERN NSString * const WeexWxPayNotification;
 @interface WeexWXPayModule : NSObject<WXModuleProtocol,WXApiDelegate>
 +(void)handleOpenURL:(NSURL *)url;
 

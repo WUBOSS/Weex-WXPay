@@ -38,27 +38,38 @@ Weex-WXPay是一个weex插件，可以通过weexpack快速集成，可以丰富w
   pod 'WeexWXPay'
   ```
 
-## 安卓集成插件weexwxpay
-- 命令行集成
-  ```
-  weexpack plugin add Weex-WXPay
-  ```
-- 手动集成
-  在相应工程的build.gradle文件的dependencies中添加
-  ```
-  compile '${groupId}:weexwxpay:{$version}'
-  ``` 
-  注意：您需要自行指定插件的groupId和version并将构建产物发布到相应的依赖管理仓库内去（例如maven）, 您也可以对插件的name进行自定义，默认将使用插件工程的名称作为name
+- api
 
+```javascript
+    var WXPay = weex.requireModule('WeexWXPay');
+    //appid 微信申请的appid
+    WXShareModule.registerAPP("appid");
+    
+   /** 商家向财付通申请的商家id */
+   //partnerId;
+   /** 预支付订单 */
+   //prepayId;
+   /** 随机串，防重发 */
+   //nonceStr;
+   /** 时间戳，防重发 */
+   //timeStamp;
+   /** 商家根据财付通文档填写的数据和签名 */
+   //package;
+   /** 商家根据微信开放平台文档对数据做的签名 */
+  // sign;
+   
+    WXPay.WXPay({"partnerid":"","prepayid":"","noncestr":"","timestamp":"","package":"","sign":""},function (ret) {
+                    var modal = weex.requireModule('modal')
+                    modal.toast({
+                        message: JSON.stringify(ret),
+                        duration: 0.7
+                    })
+                });
+    //
+    //ret
+     //   {"status":"success","msg":"支付成功"}
+     //status:成功success,失败:error
+     //msg:信息描述
 
-## 浏览器端集成 Weex-WXPay
-- 命令行集成
-  ```
-  npm install  Weex-WXPay
-  ```
-- 手动集成
-  在相应工程的package.json文件的dependencies中添加
-  ```
-  Weex-WXPay:{$version}'
-  ``` 
+```
   

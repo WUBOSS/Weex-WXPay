@@ -8,7 +8,7 @@
 
 #import "WeexWXPayModule.h"
 #import <WeexPluginLoader/WeexPluginLoader.h>
-
+NSString * const WeexWxPayNotification=@"WeexWxPayNotification";
 @implementation WeexWXPayModule
 
 WX_PlUGIN_EXPORT_MODULE(WeexWXPay, WeexWXPayModule)
@@ -23,7 +23,7 @@ WX_EXPORT_METHOD(@selector(registerAPP:))
 {
     
     self.callBack = callBack;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(payResult:) name:@"WeexWxPayNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(payResult:) name:WeexWxPayNotification object:nil];
     
     
     if(![param isKindOfClass:[NSDictionary class]])
@@ -89,7 +89,7 @@ WX_EXPORT_METHOD(@selector(registerAPP:))
 {
     
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"WeexWxPayNotification" object:nil userInfo:@{@"key":resp}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:WeexWxPayNotification object:nil userInfo:@{@"key":resp}];
     
     
 }
