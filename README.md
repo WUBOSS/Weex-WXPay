@@ -40,6 +40,15 @@ Weex-WXPay是一个weex插件，可以通过weexpack快速集成，可以丰富w
 
 - api
 
+ios 需添加
+ ```
+ -(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+        {
+            [WeexWXPayModule handleOpenURL:url];
+            return YES;
+        }
+        
+ ```      
 ```javascript
     var WXPay = weex.requireModule('WeexWXPay');
     //appid 微信申请的appid
